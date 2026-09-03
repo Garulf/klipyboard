@@ -3,8 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 from typing import List
 
-import pytest
-
 from klipyboard.cache import ThumbnailCache
 from klipyboard.klipy import GifItem
 from klipyboard.service import DEFAULT_ICON, GifService

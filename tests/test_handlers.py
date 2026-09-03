@@ -7,11 +7,15 @@ from pyflowlauncher.launcher import FlowLauncherV1
 
 from klipyboard import handlers
 from klipyboard.klipy import GifItem, KlipyHTTPError
-from klipyboard.service import DEFAULT_ICON, GifService, ResolvedGif
+from klipyboard.service import DEFAULT_ICON, ResolvedGif
 from klipyboard.settings import Settings
 
-ITEM_A = GifItem(id="1", title="cat jump", thumbnail_url="https://x/1.jpg", gif_url="https://x/1.gif")
-ITEM_B = GifItem(id="2", title="cat nap", thumbnail_url="https://x/2.jpg", gif_url="https://x/2.gif")
+ITEM_A = GifItem(
+    id="1", title="cat jump", thumbnail_url="https://x/1.jpg", gif_url="https://x/1.gif"
+)
+ITEM_B = GifItem(
+    id="2", title="cat nap", thumbnail_url="https://x/2.jpg", gif_url="https://x/2.gif"
+)
 
 
 class FakeService:

@@ -31,7 +31,11 @@ def build(
             subtitle=subtitle,
             icon=DEFAULT_ICON,
             score=_PROMPT_SCORE,
-            json_rpc_action=api.open_setting_dialog(),
+            # Command subclasses dict and is accepted at runtime wherever
+            # pyflowlauncher expects a JsonRPCRequest (see discord-flow's
+            # identical usage); the library's own type annotation just
+            # hasn't caught up since its commands API redesign.
+            json_rpc_action=api.open_setting_dialog(),  # type: ignore[arg-type]
         )
 
     def _gif_result(resolved: ResolvedGif, score: int) -> Result:
@@ -42,7 +46,7 @@ def build(
             icon=resolved.icon,
             score=score,
             copy_text=item.gif_url,
-            json_rpc_action=api.copy_to_clipboard(item.gif_url),
+            json_rpc_action=api.copy_to_clipboard(item.gif_url),  # type: ignore[arg-type]
         )
 
     async def query(query: str) -> AsyncIterator[Result]:
