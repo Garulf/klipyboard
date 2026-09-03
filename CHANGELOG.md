@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/Garulf/klipyboard/compare/v0.3.0...v0.3.1) (2026-09-03)
+
+
+### Bug Fixes
+
+* correct pyproject.toml/plugin.json version and release-please markers ([fae7cbd](https://github.com/Garulf/klipyboard/commit/fae7cbd42219764c0f931eb63564e089b6226f49))
+
 ## [0.3.0](https://github.com/Garulf/klipyboard/compare/v0.2.0...v0.3.0) (2026-09-03)
 
 
