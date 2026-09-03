@@ -3,6 +3,10 @@
 
 Search and copy Klipy GIF URLs from Flow Launcher
 
+## Screenshot
+
+![Searching and previewing a GIF in Flow Launcher](docs/screenshots/search-light.png#gh-light-mode-only)![Searching and previewing a GIF in Flow Launcher](docs/screenshots/search-dark.png#gh-dark-mode-only)
+
 ## Install
 
 Not yet published to the Flow Launcher plugin store. For now, clone this
@@ -32,7 +36,7 @@ uv run pytest tests
 
 ## Contributing
 
-Issues and pull requests are welcome.
+Issues and pull requests are welcome at [Garulf/klipyboard](https://github.com/Garulf/klipyboard).
 
 ## License
 
