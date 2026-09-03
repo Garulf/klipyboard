@@ -11,8 +11,9 @@
           "path": "pyproject.toml"
         },
         {
-          "type": "generic",
-          "path": "data/plugin.json"
+          "type": "json",
+          "path": "data/plugin.json",
+          "jsonpath": "$.Version"
         }
       ]
     }

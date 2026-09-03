@@ -7,7 +7,7 @@ name = "klipyboard"
 authors = [
     {name = "Garulf"}
 ]
-version = "0.1.0"
+version = "0.3.0" # x-release-please-version
 description = "Search and copy Klipy GIF URLs from Flow Launcher"
 requires-python = ">=3.9"
 license = { text = "MIT" }
