@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/Garulf/klipyboard/compare/v0.2.0...v0.3.0) (2026-09-03)
+
+
+### Features
+
+* show a larger static preview in Flow's preview pane ([3b0fac4](https://github.com/Garulf/klipyboard/commit/3b0fac4d7a77e8788df042b2e0177d617d2ba4e1))
+
 ## [0.2.0](https://github.com/Garulf/klipyboard/compare/v0.1.0...v0.2.0) (2026-09-03)
 
 
