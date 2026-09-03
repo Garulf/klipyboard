@@ -1,0 +1,14 @@
+body:
+  - type: textBlock
+    attributes:
+      name: description
+      description: >
+        Search or browse trending GIFs from Klipy and copy the selected
+        GIF's URL to your clipboard. Requires a Klipy API key, pasted
+        below. Get one from https://klipy.com/developers.
+  - type: input
+    attributes:
+      name: api_key
+      label: "Klipy API key:"
+      defaultValue: ""
+      description: "Your Klipy API key"
