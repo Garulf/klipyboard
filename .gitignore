@@ -33,3 +33,6 @@ plugin.log
 
 # Local thumbnail cache
 .cache/
+
+# Klipy API key (dev/testing only, never committed)
+.key
