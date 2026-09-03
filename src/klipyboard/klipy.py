@@ -23,6 +23,7 @@ class GifItem:
     title: str
     thumbnail_url: str
     gif_url: str
+    preview_url: Optional[str] = None
 
 
 class KlipyError(Exception):
@@ -96,8 +97,19 @@ def _parse_item(raw: Any) -> Optional[GifItem]:
     gif_url = _dig(files, "hd", "gif", "url") or _dig(files, "gif", "url")
     if not thumbnail_url or not gif_url:
         return None
+    preview_url = (
+        _dig(files, "hd", "jpg", "url")
+        or _dig(files, "md", "jpg", "url")
+        or _dig(files, "sm", "jpg", "url")
+    )
     title = raw.get("title") or "GIF"
-    return GifItem(id=str(item_id), title=title, thumbnail_url=thumbnail_url, gif_url=gif_url)
+    return GifItem(
+        id=str(item_id),
+        title=title,
+        thumbnail_url=thumbnail_url,
+        gif_url=gif_url,
+        preview_url=preview_url,
+    )
 
 
 def _dig(mapping: Dict[str, Any], *keys: str) -> Optional[str]:

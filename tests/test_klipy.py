@@ -69,6 +69,63 @@ async def test_search_falls_back_to_flat_gif_url(httpx_mock):
     assert items[0].gif_url == "https://cdn.klipy.com/plain/7.gif"
 
 
+async def test_search_extracts_preview_url_from_hd_jpg(httpx_mock):
+    item = {
+        "id": "42",
+        "title": "cat jump",
+        "file": {
+            "xs": {"jpg": {"url": "https://cdn.klipy.com/thumb/42.jpg"}},
+            "hd": {
+                "gif": {"url": "https://cdn.klipy.com/hd/42.gif"},
+                "jpg": {"url": "https://cdn.klipy.com/hd/42.jpg"},
+            },
+        },
+    }
+    httpx_mock.add_response(url=f"{SEARCH_URL}?q=cat&per_page=20", json={"data": [item]})
+
+    client = KlipyClient(API_KEY)
+    items = await client.search("cat")
+
+    assert items[0].preview_url == "https://cdn.klipy.com/hd/42.jpg"
+
+
+async def test_search_preview_url_falls_back_through_md_then_sm(httpx_mock):
+    item_md = {
+        "id": "1",
+        "title": "md only",
+        "file": {
+            "xs": {"jpg": {"url": "https://cdn.klipy.com/thumb/1.jpg"}},
+            "hd": {"gif": {"url": "https://cdn.klipy.com/hd/1.gif"}},
+            "md": {"jpg": {"url": "https://cdn.klipy.com/md/1.jpg"}},
+        },
+    }
+    httpx_mock.add_response(url=f"{SEARCH_URL}?q=cat&per_page=20", json={"data": [item_md]})
+    items = await KlipyClient(API_KEY).search("cat")
+    assert items[0].preview_url == "https://cdn.klipy.com/md/1.jpg"
+
+    item_sm = {
+        "id": "2",
+        "title": "sm only",
+        "file": {
+            "xs": {"jpg": {"url": "https://cdn.klipy.com/thumb/2.jpg"}},
+            "hd": {"gif": {"url": "https://cdn.klipy.com/hd/2.gif"}},
+            "sm": {"jpg": {"url": "https://cdn.klipy.com/sm/2.jpg"}},
+        },
+    }
+    httpx_mock.add_response(url=f"{SEARCH_URL}?q=cat&per_page=20", json={"data": [item_sm]})
+    items = await KlipyClient(API_KEY).search("cat")
+    assert items[0].preview_url == "https://cdn.klipy.com/sm/2.jpg"
+
+
+async def test_search_preview_url_none_when_no_larger_jpg_available(httpx_mock):
+    httpx_mock.add_response(url=f"{SEARCH_URL}?q=cat&per_page=20", json={"data": [ITEM]})
+
+    client = KlipyClient(API_KEY)
+    items = await client.search("cat")
+
+    assert items[0].preview_url is None
+
+
 async def test_search_skips_items_missing_required_urls(httpx_mock):
     broken = {"id": "9", "title": "broken", "file": {}}
     httpx_mock.add_response(

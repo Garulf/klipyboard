@@ -16,6 +16,13 @@ ITEM_A = GifItem(
 ITEM_B = GifItem(
     id="2", title="cat nap", thumbnail_url="https://x/2.jpg", gif_url="https://x/2.gif"
 )
+ITEM_WITH_PREVIEW = GifItem(
+    id="3",
+    title="cat sleep",
+    thumbnail_url="https://x/3.jpg",
+    gif_url="https://x/3.gif",
+    preview_url="https://x/3-hd.jpg",
+)
 
 
 class FakeService:
@@ -111,6 +118,29 @@ async def test_result_missing_thumbnail_uses_default_icon():
     results = await _run_query(plugin, "cat")
 
     assert results[0]["IcoPath"] == DEFAULT_ICON
+
+
+async def test_result_with_preview_url_sets_preview_info():
+    resolved = [ResolvedGif(item=ITEM_WITH_PREVIEW, icon="/tmp/3.jpg")]
+    service = FakeService(resolved)
+    plugin = _build(service, Settings(api_key="key"))
+
+    results = await _run_query(plugin, "cat")
+
+    preview = results[0]["Preview"]
+    assert preview["PreviewImagePath"] == "https://x/3-hd.jpg"
+    assert preview["IsMedia"] is True
+    assert preview["Description"] == "cat sleep"
+
+
+async def test_result_without_preview_url_has_no_preview_info():
+    resolved = [ResolvedGif(item=ITEM_A, icon="/tmp/1.jpg")]
+    service = FakeService(resolved)
+    plugin = _build(service, Settings(api_key="key"))
+
+    results = await _run_query(plugin, "cat")
+
+    assert results[0]["Preview"] is None
 
 
 async def test_klipy_error_surfaces_as_failure_result():

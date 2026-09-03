@@ -9,8 +9,9 @@ from __future__ import annotations
 from typing import AsyncIterator, Callable
 
 from pyflowlauncher import Plugin, Result
+from pyflowlauncher.models.result import PreviewInfo
 
-from klipyboard.klipy import KlipyError, KlipyHTTPError, KlipyNetworkError
+from klipyboard.klipy import GifItem, KlipyError, KlipyHTTPError, KlipyNetworkError
 from klipyboard.service import DEFAULT_ICON, GifService, ResolvedGif
 from klipyboard.settings import Settings
 
@@ -38,6 +39,20 @@ def build(
             json_rpc_action=api.open_setting_dialog(),  # type: ignore[arg-type]
         )
 
+    def _preview_for(item: GifItem) -> PreviewInfo | None:
+        if not item.preview_url:
+            return None
+        # Klipy's preview_url is a still JPEG, not the animated GIF - Flow's
+        # preview panel is a plain WPF Image control that only ever shows a
+        # GIF's first frame anyway, so a bigger static frame here is a real
+        # upgrade over relying on the small IcoPath thumbnail with no loss.
+        return PreviewInfo(
+            PreviewImagePath=item.preview_url,
+            Description=item.title,
+            IsMedia=True,
+            PreviewDeligate=None,
+        )
+
     def _gif_result(resolved: ResolvedGif, score: int) -> Result:
         item = resolved.item
         return Result(
@@ -46,6 +61,7 @@ def build(
             icon=resolved.icon,
             score=score,
             copy_text=item.gif_url,
+            preview=_preview_for(item),
             json_rpc_action=api.copy_to_clipboard(item.gif_url),  # type: ignore[arg-type]
         )
 
