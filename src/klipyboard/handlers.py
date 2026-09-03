@@ -1,0 +1,78 @@
+"""Flow Launcher rendering layer: turns GifService results into `Result`
+objects and registers the `query` method and error handling on a
+pyflowlauncher `Plugin`. Performs no network I/O and holds no caching
+policy - that all lives in `klipyboard.service`.
+"""
+
+from __future__ import annotations
+
+from typing import AsyncIterator, Callable
+
+from pyflowlauncher import Plugin, Result
+
+from klipyboard.klipy import KlipyError, KlipyHTTPError, KlipyNetworkError
+from klipyboard.service import DEFAULT_ICON, GifService, ResolvedGif
+from klipyboard.settings import Settings
+
+#: Ranks the settings/error prompt above (nonexistent) other matches.
+_PROMPT_SCORE = 1000
+
+
+def build(
+    plugin: Plugin,
+    service_factory: Callable[[], GifService],
+    settings: Callable[[], Settings],
+) -> None:
+    api = plugin.launcher.api
+
+    def _settings_result(title: str, subtitle: str) -> Result:
+        return Result(
+            title=title,
+            subtitle=subtitle,
+            icon=DEFAULT_ICON,
+            score=_PROMPT_SCORE,
+            json_rpc_action=api.open_setting_dialog(),
+        )
+
+    def _gif_result(resolved: ResolvedGif, score: int) -> Result:
+        item = resolved.item
+        return Result(
+            title=item.title,
+            subtitle="Press Enter to copy the GIF URL to your clipboard",
+            icon=resolved.icon,
+            score=score,
+            copy_text=item.gif_url,
+            json_rpc_action=api.copy_to_clipboard(item.gif_url),
+        )
+
+    async def query(query: str) -> AsyncIterator[Result]:
+        if not settings().has_api_key:
+            yield _settings_result(
+                "Set your Klipy API key",
+                "Press Enter to open settings and paste your Klipy API key",
+            )
+            return
+
+        service = service_factory()
+        stripped = query.strip()
+        resolved = await service.search(stripped) if stripped else await service.trending()
+
+        total = len(resolved)
+        for index, item in enumerate(resolved):
+            yield _gif_result(item, score=total - index)
+
+    def _on_klipy_error(exc: KlipyError) -> Result:
+        return Result(
+            title="GIF search failed",
+            subtitle="Couldn't reach Klipy - try again in a moment",
+            icon=DEFAULT_ICON,
+        )
+
+    plugin.add_method(query)
+    # EventHandler.trigger_exception_handler resolves handlers by the
+    # exception's EXACT class (a dict lookup, no MRO walk) - see
+    # discord-flow's handlers.py for the same gotcha - so a handler
+    # registered only for the base KlipyError never catches its subclasses.
+    plugin.add_exception_handler(KlipyError, _on_klipy_error)
+    plugin.add_exception_handler(KlipyHTTPError, _on_klipy_error)
+    plugin.add_exception_handler(KlipyNetworkError, _on_klipy_error)
