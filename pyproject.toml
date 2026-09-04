@@ -12,7 +12,7 @@ description = "Search and copy Klipy GIF URLs from Flow Launcher"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 dependencies = [
-    "pyflowlauncher>=1.1.2",
+    "pyflowlauncher>=1.2.1",
     "httpx",
 ]
 

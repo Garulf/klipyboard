@@ -351,7 +351,7 @@ wheels = [
 
 [[package]]
 name = "klipyboard"
-version = "0.3.0"
+version = "0.3.1"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
@@ -380,7 +380,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "httpx" },
-    { name = "pyflowlauncher", specifier = ">=1.1.2" },
+    { name = "pyflowlauncher", specifier = ">=1.2.1" },
 ]
 
 [package.metadata.requires-dev]
@@ -803,14 +803,14 @@ wheels = [
 
 [[package]]
 name = "pyflowlauncher"
-version = "1.2.0"
+version = "1.2.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "typing-extensions", marker = "python_full_version < '3.11'" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a1/40/7884b2535bdea39250ccd59f7e905926ef87b0a209f7d4ec9fa9f2f87c5f/pyflowlauncher-1.2.0.tar.gz", hash = "sha256:fd178b029c0658a59db36669e7d8ecfc3b9e75b318fb637962cf131bcc403a29", size = 19835, upload-time = "2026-08-31T15:24:54.788Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f4/4a/04f20e61f10798a0314d9245933037ef5be1082f2ad747d9b5f15fe0e404/pyflowlauncher-1.2.1.tar.gz", hash = "sha256:7ff797255255ff02202c1a732b2fecd2ad834d2fed1e61dc70679787322212c9", size = 20077, upload-time = "2026-09-04T00:24:27.923Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/18/ca/c4c11a353e8e01466759e83af847a8052479c1f3f9c3da264ce635e67e50/pyflowlauncher-1.2.0-py3-none-any.whl", hash = "sha256:642fbe4a9db768ff523c9262870028973e5c485c0049f172aa1030514f2becc8", size = 24707, upload-time = "2026-08-31T15:24:53.647Z" },
+    { url = "https://files.pythonhosted.org/packages/7d/60/6fc9febdbac341c9d2283c9120d28c3cb907974ac93ba5acd243430b203f/pyflowlauncher-1.2.1-py3-none-any.whl", hash = "sha256:8942f01aaefd6fc103cc8f14f788ef16a28adf6f9353433e4258c99de2bee077", size = 24968, upload-time = "2026-09-04T00:24:26.797Z" },
 ]
 
 [[package]]

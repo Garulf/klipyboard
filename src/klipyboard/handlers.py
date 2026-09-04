@@ -11,7 +11,7 @@ from typing import AsyncIterator, Callable
 from pyflowlauncher import Plugin, Result
 from pyflowlauncher.models.result import PreviewInfo
 
-from klipyboard.klipy import GifItem, KlipyError, KlipyHTTPError, KlipyNetworkError
+from klipyboard.klipy import GifItem, KlipyError
 from klipyboard.service import DEFAULT_ICON, GifService, ResolvedGif
 from klipyboard.settings import Settings
 
@@ -89,10 +89,6 @@ def build(
         )
 
     plugin.add_method(query)
-    # EventHandler.trigger_exception_handler resolves handlers by the
-    # exception's EXACT class (a dict lookup, no MRO walk) - see
-    # discord-flow's handlers.py for the same gotcha - so a handler
-    # registered only for the base KlipyError never catches its subclasses.
+    # pyflowlauncher>=1.2.1 walks the exception's MRO, so registering the
+    # base KlipyError here also catches KlipyHTTPError/KlipyNetworkError.
     plugin.add_exception_handler(KlipyError, _on_klipy_error)
-    plugin.add_exception_handler(KlipyHTTPError, _on_klipy_error)
-    plugin.add_exception_handler(KlipyNetworkError, _on_klipy_error)
