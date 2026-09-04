@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2](https://github.com/Garulf/klipyboard/compare/v0.3.1...v0.3.2) (2026-09-04)
+
+
+### Bug Fixes
+
+* rely on pyflowlauncher's MRO-based exception dispatch ([bd1699c](https://github.com/Garulf/klipyboard/commit/bd1699ca80e119e9c316df9f7d529745871d67bf))
+
 ## [0.3.1](https://github.com/Garulf/klipyboard/compare/v0.3.0...v0.3.1) (2026-09-03)
 
 
