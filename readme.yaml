@@ -1,9 +1,20 @@
 # readwright configuration. All keys are optional; autodetected values are shown.
-# Keys: template, templates, output, strict, allow_exec, screenshots{dir,width,style}, badges,
-#       badges_style, badges_custom, donate, donate_handles, related, project{...}, vars.
 # Run `readwright badges` / `readwright blocks` to list badge presets and template blocks.
+template: docs/README.md.j2
 project:
   name: klipyboard
+  owner: Garulf
+  repo: klipyboard
   tagline: Search and copy Klipy GIF URLs from Flow Launcher
   license: MIT
-badges: []
+  ci_workflow: ci.yml
+banner:
+  image: .github/assets/hero.png
+  alt: klipyboard hero image
+screenshots:
+  dir: .github/assets
+badges: [ci, github-release, license]
+donate: [buymeacoffee, github-sponsors]
+donate_handles:
+  buymeacoffee: garulf
+  github-sponsors: Garulf

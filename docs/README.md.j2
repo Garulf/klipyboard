@@ -1,0 +1,70 @@
+{% extends "base.md.j2" %}
+
+{% block usage %}
+## Features
+
+* **Search Klipy's GIFs.** `kl cat jump` finds GIFs as you type.
+* **Trending at a glance.** Type `kl` on its own to browse what's trending.
+* **One key to copy.** `Enter` puts the GIF's URL on your clipboard, ready to paste into a chat.
+* **Thumbnails.** Every result shows the GIF's thumbnail, cached on disk after the first search.
+
+## Usage
+
+Type `kl` followed by a search term, then press `Enter` to copy the GIF's URL:
+
+```
+kl cat jump
+```
+
+{{ screenshot("search", alt="Klipyboard search results in Flow Launcher") }}
+
+Type `kl` alone to browse trending GIFs:
+
+{{ screenshot("trending", alt="Trending GIFs in Flow Launcher") }}
+
+## Configuration
+
+Klipyboard needs a Klipy API key. Get one from [Klipy's developer page](https://klipy.com/developers), then
+open **Settings → Plugins → Klipyboard** in Flow Launcher and paste it into **Klipy API key**. Until a key
+is set, `kl` offers to open the settings for you:
+
+{{ screenshot("setup", alt="Klipyboard asking for a Klipy API key") }}
+
+## Installation
+
+Klipyboard isn't in the Flow Launcher plugin store yet. Download `klipyboard-<version>.zip` from the
+[latest release]({{ project.url }}/releases/latest) and unzip it into `%appdata%\FlowLauncher\Plugins\Klipyboard`,
+then restart Flow Launcher.
+
+Pre-releases of the next version are published from the open release PR on the
+[releases page]({{ project.url }}/releases) for testing. Flow Launcher won't offer them as updates.
+
+## Requirements
+
+* Flow Launcher 1.17.0 or newer
+* Python 3.9 or newer, which Flow Launcher can install for you
+
+## Development
+
+```bash
+uv sync
+uv run pytest
+uv run tox                # flake8, mypy and the tests on Python 3.9 and 3.14
+scripts/package.sh        # builds dist/klipyboard-<version>.zip
+```
+
+Screenshots are rendered with [flow-render](https://github.com/Garulf/flow-render):
+
+```bash
+uv run --no-project --with flow-render==0.15.0 python docs/screenshots/render.py
+```
+
+## Changelog
+
+{{ changelog(3) }}
+
+See [CHANGELOG.md](CHANGELOG.md) for the full history.
+{% endblock %}
+
+{% block screenshots %}{% endblock %}
+{% block install %}{% endblock %}
