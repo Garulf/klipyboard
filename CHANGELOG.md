@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.3](https://github.com/Garulf/klipyboard/compare/v0.3.2...v0.3.3) (2026-11-17)
+
+
+### Bug Fixes
+
+* update pyflowlauncher to 1.2.2 ([4a2275c](https://github.com/Garulf/klipyboard/commit/4a2275c0b564e2e58a8af90f05f94a115756cc72))
+* update pyflowlauncher to 1.2.2 and refresh release tooling ([8437678](https://github.com/Garulf/klipyboard/commit/84376780dba28782cc1744a1f2dfa6f496a73775))
+
 ## [0.3.2](https://github.com/Garulf/klipyboard/compare/v0.3.1...v0.3.2) (2026-09-04)
 
 
