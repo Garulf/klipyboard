@@ -69,6 +69,13 @@ uv run --no-project --with flow-render==0.15.0 python docs/screenshots/render.py
 
 ## Changelog
 
+### [0.3.3](https://github.com/Garulf/klipyboard/compare/v0.3.2...v0.3.3) (2026-11-17)
+
+#### Bug Fixes
+
+* update pyflowlauncher to 1.2.2 ([4a2275c](https://github.com/Garulf/klipyboard/commit/4a2275c0b564e2e58a8af90f05f94a115756cc72))
+* update pyflowlauncher to 1.2.2 and refresh release tooling ([8437678](https://github.com/Garulf/klipyboard/commit/84376780dba28782cc1744a1f2dfa6f496a73775))
+
 ### [0.3.2](https://github.com/Garulf/klipyboard/compare/v0.3.1...v0.3.2) (2026-09-04)
 
 #### Bug Fixes
@@ -80,12 +87,6 @@ uv run --no-project --with flow-render==0.15.0 python docs/screenshots/render.py
 #### Bug Fixes
 
 * correct pyproject.toml/plugin.json version and release-please markers ([fae7cbd](https://github.com/Garulf/klipyboard/commit/fae7cbd42219764c0f931eb63564e089b6226f49))
-
-### [0.3.0](https://github.com/Garulf/klipyboard/compare/v0.2.0...v0.3.0) (2026-09-03)
-
-#### Features
-
-* show a larger static preview in Flow's preview pane ([3b0fac4](https://github.com/Garulf/klipyboard/commit/3b0fac4d7a77e8788df042b2e0177d617d2ba4e1))
 
 See [CHANGELOG.md](CHANGELOG.md) for the full history.
 
