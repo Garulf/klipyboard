@@ -1,0 +1,12 @@
+{
+  "keyword": "kl",
+  "query": "",
+  "icon": "../../data/icon.png",
+  "max_results": 1,
+  "selection": 0,
+  "results": [
+    {"title": "Set your Klipy API key", "subtitle": "Press Enter to open settings and paste your Klipy API key", "icon": "../../data/icon.png"}
+  ],
+  "query_suggestion": "",
+  "show_caret": true
+}

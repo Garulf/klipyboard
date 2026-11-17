@@ -1,0 +1,15 @@
+{
+  "keyword": "kl",
+  "query": "cat jump",
+  "icon": "../../data/icon.png",
+  "max_results": 4,
+  "selection": 0,
+  "results": [
+    {"title": "Cat Leaps Onto the Kitchen Counter", "subtitle": "Press Enter to copy the GIF URL to your clipboard", "thumb": {"emoji": "🐈", "colors": ["#F6D365", "#FDA085"]}},
+    {"title": "Kitten Misjudges the Jump to the Couch", "subtitle": "Press Enter to copy the GIF URL to your clipboard", "thumb": {"emoji": "🐱", "colors": ["#A1C4FD", "#C2E9FB"]}},
+    {"title": "Cat Jumps at a Laser Pointer", "subtitle": "Press Enter to copy the GIF URL to your clipboard", "thumb": {"emoji": "😼", "colors": ["#FBC2EB", "#A6C1EE"]}},
+    {"title": "Startled Cat Jumps Sideways", "subtitle": "Press Enter to copy the GIF URL to your clipboard", "thumb": {"emoji": "🙀", "colors": ["#84FAB0", "#8FD3F4"]}}
+  ],
+  "query_suggestion": "",
+  "show_caret": false
+}

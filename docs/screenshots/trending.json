@@ -1,0 +1,15 @@
+{
+  "keyword": "kl",
+  "query": "",
+  "icon": "../../data/icon.png",
+  "max_results": 4,
+  "selection": 0,
+  "results": [
+    {"title": "Happy Friday Dance", "subtitle": "Press Enter to copy the GIF URL to your clipboard", "thumb": {"emoji": "🕺", "colors": ["#FF9A9E", "#FECFEF"]}},
+    {"title": "Mind Blown", "subtitle": "Press Enter to copy the GIF URL to your clipboard", "thumb": {"emoji": "🤯", "colors": ["#FFECD2", "#FCB69F"]}},
+    {"title": "Slow Clap", "subtitle": "Press Enter to copy the GIF URL to your clipboard", "thumb": {"emoji": "👏", "colors": ["#A18CD1", "#FBC2EB"]}},
+    {"title": "Thumbs Up and Wink", "subtitle": "Press Enter to copy the GIF URL to your clipboard", "thumb": {"emoji": "😉", "colors": ["#96E6A1", "#D4FC79"]}}
+  ],
+  "query_suggestion": "",
+  "show_caret": true
+}
